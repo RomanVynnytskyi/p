@@ -265,3 +265,25 @@ class Human:
     def chill(self):
         self.gladness += 10
         self.home.mess += 5
+    def clean_home(self):
+        self.gladness -= 5
+        self.home.mess = 0
+    def to_repair(self):
+        self.car.strength += 100
+        self.money -= 50
+    def day_indexes(self, day):
+        day = f"Today the {day} of {self.name}'s life"
+        print(f"day:=^50", "\n")
+        human_indexe = self.name + "'s indexes"
+        print(f"{human_indexe:^50}", "\n")
+        print(f"Money - {self.money}")
+        print(f"Satiety - {self.satiety}")
+        print(f"Gladness - {self.gladness}")
+        home_indexes = "Home indexes"
+        print(f"{home_indexes:^50}", "\n")
+        print(f"Foob - {self.home.food}")
+        print(f"Mess - {self.home.mess}")
+        car_indexes = f"{self.car.brand} car indexes"
+        print(f"{car_indexes:^50}", "\n")
+        print(f"Fuel - {self.car.fuel}")
+        print(f"Strength - {self.car.strength}")
