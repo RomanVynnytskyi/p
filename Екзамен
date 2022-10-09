@@ -1,0 +1,32 @@
+import sqlite3
+con = sqlite3.connect('products.sl3', 5)
+cur = con.cursor()
+
+while True:
+    name_t = input("Введи назву товару:  ")
+    price_t = int(input("Введи ціну товару:  "))
+    number_t = int(input("Введи кількість товару:  "))
+    n = int(input("Що хочеш зробити: Пропустии - 0; змінити - 1:  "))
+    if n == 1:
+        r = int(input("Що хочеш зробити: видалити товар - 1; змінити товар - 2:  "))
+        if r == 1:
+            nu = int(input("Введіть id товару:  "))
+            cur.execute(f"DELETE FROM internet_shop WHERE rowid = {nu};")
+            con.commit()
+        elif r == 2:
+            nu = int(input("Введіть id товару:  "))
+            cur.execute(f"UPDATE internet_shop SET name = 'name_t', price = 'price_t', number = 'number_t' WHERE rowid = {nu};")
+            con.commit()
+        
+    
+    # cur.execute('CREATE TABLE internet_shop (name_t TEXT, price_t TEXT, number_t TEXT);')
+    # con.commit()
+    cur.execute(f"INSERT INTO internet_shop (name_t, price_t, number_t) VALUES ('{name_t}', {price_t}, {number_t});")
+    con.commit()
+    
+    
+    
+    cur.execute('SELECT rowid, name_t, price_t, number_t FROM internet_shop;')
+    res = cur.fetchall()
+    print(res)
+    con.close()
